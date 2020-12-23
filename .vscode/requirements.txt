@@ -1,2 +1,3 @@
 flask
 cs50
+sqlite3

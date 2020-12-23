@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <form action="/search" method="post" class="">
+        <div class="input-group mb-3 shadow-sm">
+            <input class="form-control text-truncate" name="brand" autocomplete="off" type="search" placeholder="Brand / Company">
+            <input class="form-control text-truncate" name="name" autocomplete="off" type="search" placeholder="Label">
+            <button class="btn btn-primary">Search</button>
+        </div>
+    </form>
+{% endblock %}

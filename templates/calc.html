@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    - Calculate Nutrients
+{% endblock %}
+
+{% block main %}
+    <table class="table table-responsive table-bordered shadow-sm">
+        <thead>
+            <tr>
+                <th>Brand/Company</th>
+                <th>Label</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Cal</th>
+                <th>Fat</th>
+                <th>Carb</th>
+                <th>Fib</th>
+                <th>Prot</th>
+                <th>Sugar</th>
+                <th>Sod</th>
+                <th>Pot</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="no">{{ row["brand"] }}</td>
+                <td>{{ row["name"] }}</td>
+                <td>{{ row["desc"] }}</td>
+                <td>{{ multiplier * row["amount"]}} {{ row["amount_type"] }}</td>
+                <td>{{ multiplier * row["cal"] }}</td>
+                <td>{{ multiplier * row["fat"] }}</td>
+                <td>{{ multiplier * row["carb"] }}</td>
+                <td>{{ multiplier * row["fiber"] }}</td>
+                <td>{{ multiplier * row["prot"] }}</td>
+                <td>{{ multiplier * row["sugar"] }}</td>
+                <td>{{ multiplier * row["sodium"] }}</td>
+                <td>{{ multiplier * row["potassium"] }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <span>
+            <form action="/calc" method="post">
+                <span class="input-group mb-3 shadow-sm">
+                    <input class="form-control-sm" name="multiplier" type="number" value="{{ multiplier }}" min="0" step="any" autocomplete="off" placeholder="Multiplier" required>
+                    <input name="id" type="number" value="{{ row['id'] }}" hidden>
+                    <button class="btn btn-secondary btn-sm">Calculate</button>
+                </span>
+            </form>
+        </span>
+        <span>
+            <form action="/edit" method="post" class="float-end mb-5 form-control-sm">
+                <input name="post_type" type="text" value="load" hidden>
+                <input name="id" type="number" value="{{ row['id'] }}" hidden>
+                <label for="editButton" class="small fw-normal">Not right?</label>
+                <button class="btn btn-secondary btn-sm" id="editButton">Edit</button>
+            </form>
+        </span>
+    </div>
+{% endblock %}

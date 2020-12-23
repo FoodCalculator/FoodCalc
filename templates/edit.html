@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    - Edit
+{% endblock %}
+
+{% block main %}
+    <form action="/edit" method="post">
+        <input name="post_type" type="text" value="edit" hidden>
+        <input name="id" type="number" value="{{ row['id'] }}" hidden>
+        <div class="mb-3">
+            <input class="form-control" name="brand" type="text" value="{{ row['brand'] }}" placeholder="Brand/Company Name">
+        </div>
+        <div class="mb-3">
+            <input class="form-control" name="name" type="text" value="{{ row['name'] }}" autocomplete="off" placeholder="Food Label (eg. Joes Pancakes, not Pancake Mix)" required>
+        </div>
+        <div class="mb-3">
+            <input class="form-control" name="desc" type="text" value="{{ row['desc'] }}" autocomplete="off" placeholder="Description (eg. Pancake Mix)" required>
+        </div>
+        <div class="mb-3">
+            <input class="form-control"  name="amount" type="number" value="{{ row['amount'] }}" min="0" step="any" autocomplete="off" placeholder="Serving Amount (eg. 1)" required>
+        </div>
+        <div class="mb-3">
+            <select class="form-select"  name="amount_type" type="text" value="{{ row['amount_type'] }}" min="0" step="any" autocomplete="off" placeholder="Amount Type (eg. tsp)" required>
+                <option value="g">g (gram)</option>
+                <option value="mg">mg (milagram)</option>
+                <option value="tsp">tsp (teaspoon)</option>
+                <option value="tbs">tbs (tablespoon)</option>
+                <option value="oz">oz (ounce)</option>
+                <option value="l">l (liter)</option>
+                <option value="ml">ml (milaliter)</option>
+                <option value="drop">droplet</option>
+                <option value="packet">packet</option>
+                <option value="bag">bag</option>
+                <option value="pouch">pouch</option>
+                <option value="sm">sm (small)</option>
+                <option value="md">md (medium)</option>
+                <option value="lg">lg (large)</option>
+            <select>
+        </div>
+        <div class="mb-3">
+            <input class="form-control"  name="cal" type="number" value="{{ row['cal'] }}" min="0" step="any" autocomplete="off" placeholder="Calories (g)" required>
+        </div>
+        <div class="mb-3">
+            <input class="form-control"  name="fat" type="number" value="{{ row['fat'] }}" min="0" step="any" autocomplete="off" placeholder="Fat (g)" required>
+        </div>
+        <div class="mb-3">
+            <input class="form-control"  name="carb" type="number" value="{{ row['carb'] }}" min="0" step="any" autocomplete="off" placeholder="Carbs (g)" required>
+        </div>
+        <div class="mb-3">
+            <input class="form-control"  name="fib" type="number" value="{{ row['fiber'] }}" min="0" step="any" autocomplete="off" placeholder="Fiber (g)" required>
+        </div>
+        <div class="mb-3">
+            <input class="form-control"  name="prot" type="number" value="{{ row['prot'] }}" min="0" step="any" autocomplete="off" placeholder="Protein (g)" required>
+        </div>
+        <div class="mb-3">
+            <input class="form-control"  name="sugar" type="number" value="{{ row['sugar'] }}" min="0" step="any" autocomplete="off" placeholder="Sugar (g)" required>
+        </div>
+        <div class="mb-3">
+            <input class="form-control"  name="sod" type="number" value="{{ row['sodium'] }}" min="0" step="any" autocomplete="off" placeholder="Sodium (mg)" required>
+        </div>
+        <div class="mb-3">
+            <input class="form-control"  name="pot" type="number" value="{{ row['potassium'] }}" min="0" step="any" autocomplete="off" placeholder="Potassium (mg)" required>
+        </div>
+        <button class="btn btn-primary">Submit Changes</button>
+    </form>
+{% endblock %}

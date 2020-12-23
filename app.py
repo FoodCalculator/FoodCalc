@@ -34,6 +34,7 @@ def add():
         desc = str(request.form.get("desc")).title()
         amount = float(request.form.get("amount"))
         amount_type = str(request.form.get("amount_type")).lower()
+        total_servs = float(request.form.get("total_servs"))
         cal = float(request.form.get("cal"))
         fat = float(request.form.get("fat"))
         carb = float(request.form.get("carb"))
@@ -46,9 +47,9 @@ def add():
         if brand == "":
             brand = None
         
-        db.execute("INSERT INTO foods (brand, name, desc, amount, amount_type, cal, fat, carb, fiber, prot, sugar, sodium, potassium) " +
-            "VALUES(:brand, :name, :desc, :amount, :amount_type, :cal, :fat, :carb, :fiber, :prot, :sugar, :sodium, :potassium)",
-            brand=brand, name=name, desc= desc, amount=amount, amount_type=amount_type, cal=cal, fat=fat, carb=carb, fiber=fib, prot=prot, sugar=sugar, sodium=sod, potassium=pot)
+        db.execute("INSERT INTO foods (brand, name, desc, amount, amount_type, total_servs, cal, fat, carb, fiber, prot, sugar, sodium, potassium) " +
+            "VALUES(:brand, :name, :desc, :amount, :amount_type, :total_servs, :cal, :fat, :carb, :fiber, :prot, :sugar, :sodium, :potassium)",
+            brand=brand, name=name, desc= desc, amount=amount, amount_type=amount_type, total_servs=total_servs, cal=cal, fat=fat, carb=carb, fiber=fib, prot=prot, sugar=sugar, sodium=sod, potassium=pot)
 
         return redirect("/")
     else:
@@ -134,6 +135,7 @@ def edit():
         desc = str(request.form.get("desc")).title()
         amount = float(request.form.get("amount"))
         amount_type = str(request.form.get("amount_type")).lower()
+        total_servs = float(request.form.get("total_servs"))
         cal = float(request.form.get("cal"))
         fat = float(request.form.get("fat"))
         carb = float(request.form.get("carb"))
@@ -146,9 +148,9 @@ def edit():
         if brand == "":
             brand = None
 
-        rows = db.execute("UPDATE foods SET brand = :brand, name = :name, desc = :desc, amount = :amount, amount_type = :amount_type, cal = :cal, fat = :fat, carb = :carb, fiber = :fiber, prot = :prot, sugar = :sugar, sodium = :sodium, potassium = :potassium " +
+        rows = db.execute("UPDATE foods SET brand = :brand, name = :name, desc = :desc, amount = :amount, amount_type = :amount_type, total_servs = :total_servs, cal = :cal, fat = :fat, carb = :carb, fiber = :fiber, prot = :prot, sugar = :sugar, sodium = :sodium, potassium = :potassium " +
             "WHERE foods.id = :id",
-            brand=brand, name=name, desc=desc, amount=amount, amount_type=amount_type, cal=cal, fat=fat, carb=carb, fiber=fib, prot=prot, sugar=sugar, sodium=sod, potassium=pot,
+            brand=brand, name=name, desc=desc, amount=amount, amount_type=amount_type, total_servs=total_servs, cal=cal, fat=fat, carb=carb, fiber=fib, prot=prot, sugar=sugar, sodium=sod, potassium=pot,
             id=id)
 
         return redirect("/search")

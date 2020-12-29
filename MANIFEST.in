@@ -1,0 +1,3 @@
+graft foodcalc/static
+graft foodcalc/templates
+global-exclude *.pyc

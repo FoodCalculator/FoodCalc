@@ -36,8 +36,8 @@ def add():
 
         newfood = Food(brand=brand, name=name, desc=desc, amount=amount,
                        amount_type=amount_type, total_servs=total_servs,
-                       cal=cal, fat=fat, carb=carb, fib=fib, prot=prot,
-                       sugar=sugar, sod=sod, pot=pot)
+                       cal=cal, fat=fat, carb=carb, fiber=fib, prot=prot,
+                       sugar=sugar, sodium=sod, potassium=pot)
         db.session.add(newfood)
         db.session.commit()
 

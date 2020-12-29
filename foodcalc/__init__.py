@@ -18,6 +18,10 @@ def create_app():
 
     db.init_app(app)
 
+    @app.before_first_request
+    def init_db():
+        db.create_all()
+
     # Ensure responses aren't cached
     @app.after_request
     def after_request(response):

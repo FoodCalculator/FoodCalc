@@ -13,7 +13,7 @@ def create_app():
     # Ensure app reloads on templates changes
     app.config["TEMPLATES_AUTO_RELOAD"] = True
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(
-        "DATABASE_URI", "sqlite:///foodcalc.db")
+        "DATABASE_URL", "sqlite:///foodcalc.db")
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     db.init_app(app)

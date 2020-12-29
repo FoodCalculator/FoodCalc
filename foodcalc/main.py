@@ -101,7 +101,10 @@ def calc():
     food = Food.query.filter(Food.id == id).first()
 
     # update the clicks the food has (usage popularity)
-    food.clicks += 1
+    if food.clicks is None:
+        food.clicks = 1
+    else:
+        food.clicks += 1
 
     db.session.add(food)
     db.session.commit()
@@ -120,7 +123,10 @@ def edit():
         food = Food.query.filter(Food.id == id).first()
 
         # update the clicks the food has (usage popularity)
-        food.clicks += 1
+        if food.clicks is None:
+            food.clicks = 1
+        else:
+            food.clicks += 1
         db.session.add(food)
         db.session.commit()
 

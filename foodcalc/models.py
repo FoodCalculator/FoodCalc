@@ -17,7 +17,7 @@ class Food(db.Model):
     desc = db.Column(db.Text)
     total_servs = db.Column(db.Text)
     amount = db.Column(db.Integer)
-    amount_type = db.Column(db.Integer)
+    amount_type = db.Column(db.Text)
     cal = db.Column(db.Integer)
     fat = db.Column(db.Integer)
     carb = db.Column(db.Integer)

@@ -13,7 +13,6 @@ def index():
 
 @bp.route("/add", methods=["POST", "GET"])
 def add():
-
     if request.method == "POST":
 
         brand = str(request.form.get("brand")).title()
@@ -95,7 +94,6 @@ def search():
 
 @bp.route("/calc", methods=["POST"])
 def calc():
-
     id = int(request.form.get("id"))
     multiplier = float(request.form.get("multiplier"))
 

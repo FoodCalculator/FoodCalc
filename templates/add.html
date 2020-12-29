@@ -5,21 +5,31 @@
 {% endblock %}
 
 {% block main %}
-    <form action="/add" method="post">
-        <div class="mb-3">
-            <input class="form-control" name="brand" type="text" autocomplete="off" placeholder="Brand/Company Name">
+    <!--jumbo mumbo in the autocomplete attribute to signify off/false according to https://gist.github.com/niksumeiko/360164708c3b326bd1c8-->
+    <form autocomplete="kajhrkav3rkaw" action="/add" method="post">
+        <div class="form-floating mb-3">
+            <input class="form-control" id="brand-float" name="brand" list="brands" type="text" autocomplete="alkjbwfe" placeholder="Brand/Company Name">
+            <label for="brand-float">Brand/Company Name</label>
+            <datalist id="brands">
+                {% for brand in brands %}
+                    <option value="{{ brand['brand'] }}"></option>
+                {% endfor %}
+            </datalist>
         </div>
-        <div class="mb-3">
-            <input class="form-control" name="name" type="text" autocomplete="off" placeholder="Food Label (eg. Joes Pancakes, not Pancake Mix)" required>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="name-float" name="name" type="text" autocomplete="aefi" placeholder="Food Label (eg. Joes Pancakes, not Pancake Mix)" required>
+            <label for="name-float">Food Label</label>
         </div>
-        <div class="mb-3">
-            <input class="form-control" name="desc" type="text" autocomplete="off" placeholder="Description (eg. Pancake Mix)" required>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="desc-float" name="desc" type="text" autocomplete="akuegauew" placeholder="Description (eg. Pancake Mix)">
+            <label for="desc-float">Description</label>
         </div>
-        <div class="mb-3">
-            <input class="form-control"  name="amount" type="number" min="1" step="any" autocomplete="off" placeholder="Serving Amount (eg. 1)" required>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="amount-float" name="amount" type="number" min="1" step="any" autocomplete="akewuhgakuew" placeholder="Serving Amount (eg. 1)" required>
+            <label for="amount-float">Serving Size/Amount</label>
         </div>
-        <div class="mb-3">
-            <select class="form-select"  name="amount_type" type="text" autocomplete="off" placeholder="Serving Measurement (eg. gram)" required>
+        <div class="form-floating mb-3">
+            <select class="form-select" id="amount-type-float" name="amount_type" type="text" autocomplete="aewuhgawe" placeholder="Serving Measurement (eg. gram)" required>
                 <option value="g">g (gram)</option>
                 <option value="mg">mg (milagram)</option>
                 <option value="tsp">tsp (teaspoon)</option>
@@ -35,33 +45,47 @@
                 <option value="md">md (medium)</option>
                 <option value="lg">lg (large)</option>
             <select>
+            <label for="amount-type-float">Serving Measurement</label>
         </div>
-        <div class="mb-3">
-            <input class="form-control" name="total_servs" type="number" min="1" step="any" autocomplete="off" placeholder="Servings Per Container" required>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="total-float" name="total_servs" type="number" min="1" step="any" autocomplete="kjavwek" placeholder="Servings Per Container (approximate)" required>
+            <label for="total-float">Servings Per Container</label>
         </div>
-        <div class="mb-3">
-            <input class="form-control"  name="cal" type="number" min="0" step="any" autocomplete="off" placeholder="Calories (g)" required>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="cal-float" name="cal" type="number" min="0" step="any" autocomplete="kavew" placeholder="Calories (g)" required>
+            <label for="cal-float">Calories</label>
         </div>
-        <div class="mb-3">
-            <input class="form-control"  name="fat" type="number" min="0" step="any" autocomplete="off" placeholder="Fat (g)" required>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="fat-float" name="fat" type="number" min="0" step="any" autocomplete="kagwevfkhvwae" placeholder="Fat (g)" required>
+            <label for="fat-float">Fat</label>
         </div>
-        <div class="mb-3">
-            <input class="form-control"  name="carb" type="number" min="0" step="any" autocomplete="off" placeholder="Carbs (g)" required>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="carb-float" name="carb" type="number" min="0" step="any" autocomplete="ofkawekfhvgawef" placeholder="Carbs (g)" required>
+            <label for="carb-float">Carb</label>
         </div>
-        <div class="mb-3">
-            <input class="form-control"  name="fib" type="number" min="0" step="any" autocomplete="off" placeholder="Fiber (g)" required>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="fib-float" name="fib" type="number" min="0" step="any" autocomplete="kekawvek" placeholder="Fiber (g)" required>
+            <label for="fib-float">Fiber</label>
         </div>
-        <div class="mb-3">
-            <input class="form-control"  name="prot" type="number" min="0" step="any" autocomplete="off" placeholder="Protein (g)" required>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="sugar-float" name="sugar" type="number" min="0" step="any" autocomplete="kagvkawe" placeholder="Sugar (g)" required>
+            <label for="sugar-float">Sugar</label>
         </div>
-        <div class="mb-3">
-            <input class="form-control"  name="sugar" type="number" min="0" step="any" autocomplete="off" placeholder="Sugar (g)" required>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="prot-float" name="prot" type="number" min="0" step="any" autocomplete="kagwekvwe" placeholder="Protein (g)" required>
+            <label for="prot-float">Protein</label>
         </div>
-        <div class="mb-3">
-            <input class="form-control"  name="sod" type="number" min="0" step="any" autocomplete="off" placeholder="Sodium (mg)" required>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="chol-float" name="chol" type="number" min="0" step="any" autocomplete="aewofbawe" placeholder="Cholesterol (mg)" required>
+            <label for="chol-float">Cholesterol (mg)</label>
         </div>
-        <div class="mb-3">
-            <input class="form-control"  name="pot" type="number" min="0" step="any" autocomplete="off" placeholder="Potassium (mg)" required>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="sod-float" name="sod" type="number" min="0" step="any" autocomplete="awvekvwe" placeholder="Sodium (mg)" required>
+            <label for="sod-float">Sodium (mg)</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="pot-float" name="pot" type="number" min="0" step="any" autocomplete="ofawhegkuawegf" placeholder="Potassium (mg)" required>
+            <label for="pot-float">Potassium (mg)</label>
         </div>
         <button class="btn btn-primary">Add</button>
     </form>

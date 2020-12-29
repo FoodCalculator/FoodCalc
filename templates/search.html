@@ -30,6 +30,7 @@
         <span class="form-control w-01">Sugar</span>
         <span class="form-control w-01">Sod</span>
         <span class="form-control w-01">Pot</span>
+        <span class="form-control w-01">Chol</span>
     </form>
     <!--Place an ad for a food item here-->
 
@@ -40,7 +41,7 @@
             <span class="form-control text-nowrap w-10">{{ row["brand"] }}</span>
             <span class="form-control text-nowrap w-10">{{ row["name"] }}</span>
             <span class="form-control text-nowrap w-10">{{ row["desc"] }}</span>
-            <span class="form-control text-nowrap w-5">{{ row["amount"] }} {{ row["amount_type"] }}</span>
+            <span class="form-control text-nowrap w-5">{{ row["serv_amount"] }} {{ row["amount_type"] }}</span>
             <span class="form-control w-01">{{ row["cal"] }}</span>
             <span class="form-control w-01">{{ row["fat"] }}</span>
             <span class="form-control w-01">{{ row["carb"] }}</span>
@@ -49,6 +50,7 @@
             <span class="form-control w-01">{{ row["sugar"] }}</span>
             <span class="form-control w-01">{{ row["sodium"] }}</span>
             <span class="form-control w-01">{{ row["potassium"] }}</span>
+            <span class="form-control w-01">{{ row["cholesterol"] }}</span>
         </div>
 
         <!--Make the calculate form and edit button/form drop down when the user clicks on the food item-->

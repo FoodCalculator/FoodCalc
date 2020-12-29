@@ -8,19 +8,24 @@
     <form action="/edit" method="post">
         <input name="post_type" type="text" value="edit" hidden>
         <input name="id" type="number" value="{{ row['id'] }}" hidden>
-        <div class="mb-3">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Brand / Company Name</span>
             <input class="form-control" name="brand" type="text" value="{{ row['brand'] }}" autocomplete="off" placeholder="Brand/Company Name">
         </div>
-        <div class="mb-3">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Food Label</span>
             <input class="form-control" name="name" type="text" value="{{ row['name'] }}" autocomplete="off" placeholder="Food Label (eg. Joes Pancakes, not Pancake Mix)" required>
         </div>
-        <div class="mb-3">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Description</span>
             <input class="form-control" name="desc" type="text" value="{{ row['desc'] }}" autocomplete="off" placeholder="Description (eg. Pancake Mix)" required>
         </div>
-        <div class="mb-3">
-            <input class="form-control"  name="amount" type="number" value="{{ row['amount'] }}" min="1" step="any" autocomplete="off" placeholder="Serving Amount (eg. 1)" required>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Serving Size</span>
+            <input class="form-control"  name="amount" type="number" value="{{ row['serv_amount'] }}" min="1" step="any" autocomplete="off" placeholder="Serving Amount (eg. 1)" required>
         </div>
-        <div class="mb-3">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Serving Type</span>
             <select class="form-select"  name="amount_type" type="text" value="{{ row['amount_type'] }}" autocomplete="off" placeholder="Amount Type (eg. tsp)" required>
                 <option value="g">g (gram)</option>
                 <option value="mg">mg (milagram)</option>
@@ -38,31 +43,44 @@
                 <option value="lg">lg (large)</option>
             <select>
         </div>
-        <div class="mb-3">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Servings Per Container</span>
             <input class="form-control"  name="total_servs" type="number" value="{{ row['total_servs'] }}" min="1" step="any" autocomplete="off" placeholder="Servings Per Container / Package" required>
         </div>
-        <div class="mb-3">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Calories</span>
             <input class="form-control"  name="cal" type="number" value="{{ row['cal'] }}" min="0" step="any" autocomplete="off" placeholder="Calories (g)" required>
         </div>
-        <div class="mb-3">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Fat</span>
             <input class="form-control"  name="fat" type="number" value="{{ row['fat'] }}" min="0" step="any" autocomplete="off" placeholder="Fat (g)" required>
         </div>
-        <div class="mb-3">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Carb</span>
             <input class="form-control"  name="carb" type="number" value="{{ row['carb'] }}" min="0" step="any" autocomplete="off" placeholder="Carbs (g)" required>
         </div>
-        <div class="mb-3">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Fiber</span>
             <input class="form-control"  name="fib" type="number" value="{{ row['fiber'] }}" min="0" step="any" autocomplete="off" placeholder="Fiber (g)" required>
         </div>
-        <div class="mb-3">
-            <input class="form-control"  name="prot" type="number" value="{{ row['prot'] }}" min="0" step="any" autocomplete="off" placeholder="Protein (g)" required>
-        </div>
-        <div class="mb-3">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Sugar</span>
             <input class="form-control"  name="sugar" type="number" value="{{ row['sugar'] }}" min="0" step="any" autocomplete="off" placeholder="Sugar (g)" required>
         </div>
-        <div class="mb-3">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Protein</span>
+            <input class="form-control"  name="prot" type="number" value="{{ row['prot'] }}" min="0" step="any" autocomplete="off" placeholder="Protein (g)" required>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Cholesterol</span>
+            <input class="form-control"  name="chol" type="number" value="{{ row['cholesterol'] }}" min="0" step="any" autocomplete="off" placeholder="Cholesterol (mg)" required>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Sodium</span>
             <input class="form-control"  name="sod" type="number" value="{{ row['sodium'] }}" min="0" step="any" autocomplete="off" placeholder="Sodium (mg)" required>
         </div>
-        <div class="mb-3">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Potassium</span>
             <input class="form-control"  name="pot" type="number" value="{{ row['potassium'] }}" min="0" step="any" autocomplete="off" placeholder="Potassium (mg)" required>
         </div>
         <button class="btn btn-primary">Submit Changes</button>

@@ -21,7 +21,8 @@ def after_request(response):
 
 @app.route("/", methods=["GET"])
 def index():
-    return render_template("foods.html")
+    rows = db.execute("SELECT * FROM foods ORDER BY date DESC")
+    return render_template("foods.html", rows=rows, top_message="Recently added foods")
 
 
 @app.route("/add", methods=["POST", "GET"])
@@ -43,17 +44,22 @@ def add():
         sugar = float(request.form.get("sugar"))
         sod = float(request.form.get("sod"))
         pot = float(request.form.get("pot"))
+        chol = float(request.form.get("chol"))
 
         if brand == "":
             brand = None
         
-        db.execute("INSERT INTO foods (brand, name, desc, amount, amount_type, total_servs, cal, fat, carb, fiber, prot, sugar, sodium, potassium) " +
-            "VALUES(:brand, :name, :desc, :amount, :amount_type, :total_servs, :cal, :fat, :carb, :fiber, :prot, :sugar, :sodium, :potassium)",
-            brand=brand, name=name, desc= desc, amount=amount, amount_type=amount_type, total_servs=total_servs, cal=cal, fat=fat, carb=carb, fiber=fib, prot=prot, sugar=sugar, sodium=sod, potassium=pot)
+        db.execute("INSERT INTO foods (brand, name, desc, serv_amount, amount_type, total_servs, cal, fat, carb, fiber, prot, sugar, sodium, potassium, cholesterol) " +
+            "VALUES(:brand, :name, :desc, :amount, :amount_type, :total_servs, :cal, :fat, :carb, :fiber, :prot, :sugar, :sodium, :potassium, :cholesterol)",
+            brand=brand, name=name, desc= desc, amount=amount, amount_type=amount_type, total_servs=total_servs, cal=cal, fat=fat, carb=carb, fiber=fib, prot=prot, sugar=sugar, sodium=sod, potassium=pot, cholesterol=chol)
 
         return redirect("/")
     else:
-        return render_template("add.html")
+        
+        # consider using alphabetic ordering rather than the number of clicks
+        brands = db.execute("SELECT DISTINCT brand FROM foods ORDER BY clicks DESC")
+
+        return render_template("add.html", brands=brands)
 
 
 @app.route("/search", methods=["POST", "GET"])
@@ -144,16 +150,14 @@ def edit():
         sugar = float(request.form.get("sugar"))
         sod = float(request.form.get("sod"))
         pot = float(request.form.get("pot"))
+        chol = float(request.form.get("chol"))
 
         if brand == "":
             brand = None
 
-        rows = db.execute("UPDATE foods SET brand = :brand, name = :name, desc = :desc, amount = :amount, amount_type = :amount_type, total_servs = :total_servs, cal = :cal, fat = :fat, carb = :carb, fiber = :fiber, prot = :prot, sugar = :sugar, sodium = :sodium, potassium = :potassium " +
+        rows = db.execute("UPDATE foods SET brand = :brand, name = :name, desc = :desc, serv_amount = :amount, amount_type = :amount_type, total_servs = :total_servs, cal = :cal, fat = :fat, carb = :carb, fiber = :fiber, prot = :prot, sugar = :sugar, sodium = :sodium, potassium = :potassium, cholesterol = :chol " +
             "WHERE foods.id = :id",
-            brand=brand, name=name, desc=desc, amount=amount, amount_type=amount_type, total_servs=total_servs, cal=cal, fat=fat, carb=carb, fiber=fib, prot=prot, sugar=sugar, sodium=sod, potassium=pot,
+            brand=brand, name=name, desc=desc, amount=amount, amount_type=amount_type, total_servs=total_servs, cal=cal, fat=fat, carb=carb, fiber=fib, prot=prot, sugar=sugar, sodium=sod, potassium=pot, chol=chol,
             id=id)
 
         return redirect("/search")
-
-if __name__ == '__main__':
-    app.run()

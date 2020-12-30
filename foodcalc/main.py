@@ -27,6 +27,7 @@ def add():
         fib = float(request.form.get("fib"))
         prot = float(request.form.get("prot"))
         sugar = float(request.form.get("sugar"))
+        chol = float(request.form.get("chol"))
         sod = float(request.form.get("sod"))
         pot = float(request.form.get("pot"))
 
@@ -36,7 +37,7 @@ def add():
         newfood = Food(brand=brand, name=name, desc=desc, amount=amount,
                        amount_type=amount_type, total_servs=total_servs,
                        cal=cal, fat=fat, carb=carb, fiber=fib, prot=prot,
-                       sugar=sugar, sodium=sod, potassium=pot)
+                       sugar=sugar, cholesterol=chol, sodium=sod, potassium=pot)
         db.session.add(newfood)
         db.session.commit()
 
@@ -146,6 +147,7 @@ def edit():
         fib = float(request.form.get("fib"))
         prot = float(request.form.get("prot"))
         sugar = float(request.form.get("sugar"))
+        chol = float(request.form.get("chol"))
         sod = float(request.form.get("sod"))
         pot = float(request.form.get("pot"))
 
@@ -165,6 +167,7 @@ def edit():
         food.fiber = fib
         food.prot = prot
         food.sugar = sugar
+        food.cholesterol = chol
         food.sodium = sod
         food.potassium = pot
 

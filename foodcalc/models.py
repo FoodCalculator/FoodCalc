@@ -25,6 +25,7 @@ class Food(db.Model):
     prot = db.Column(db.Integer)
     sugar = db.Column(db.Integer)
     sodium = db.Column(db.Integer)
+    cholesterol = db.Column(db.Integer)
     potassium = db.Column(db.Integer)
     clicks = db.Column(db.Integer)
-    date = db.Column(db.DateTime)
+    date = db.Column(db.Integer)

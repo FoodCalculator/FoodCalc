@@ -1,4 +1,4 @@
-"""The main routes."""
+"""The main blueprint."""
 
 from flask import Blueprint, render_template, request, redirect, abort, flash, url_for
 from flask_security import login_required, current_user
@@ -44,7 +44,7 @@ def add():
                        amount_type=amount_type, total_servs=total_servs,
                        cal=cal, fat=fat, carb=carb, fiber=fib, prot=prot,
                        sugar=sugar, sodium=sod, potassium=pot,
-                       user_id=current_user.id, active=False, cholesterol=chol
+                       user_id=current_user.id, active=False, cholesterol=chol)
         db.session.add(newfood)
         db.session.commit()
 

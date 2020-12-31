@@ -41,3 +41,4 @@ class Food(db.Model):
     date = db.Column(db.DateTime)
     active = db.Column(db.Boolean)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    cholesterol = db.Column(db.Integer)

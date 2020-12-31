@@ -39,6 +39,7 @@ def create_app():
         1: 'O229mrlQXalFv9BfmCGsrGB9u4TGBg3CCfOxUl61KIC'
     })
     app.config["SECURITY_TOTP_ISSUER"] = "Food Calc"
+    app.config["SECURITY_SEND_REGISTER_EMAIL"] = False
 
     db.init_app(app)
     security.init_app(app, user_datastore)

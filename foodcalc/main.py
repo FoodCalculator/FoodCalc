@@ -1,7 +1,7 @@
 """The main routes."""
 
-from flask import Blueprint, render_template, request, redirect, abort
-from flask_security import roles_required
+from flask import Blueprint, render_template, request, redirect, abort, flash, url_for
+from flask_security import login_required, current_user
 
 from foodcalc.models import db, Food
 
@@ -16,7 +16,7 @@ def index():
 
 
 @bp.route("/add", methods=["POST", "GET"])
-@roles_required('admin')
+@login_required
 def add():
     """Add a food."""
     if request.method == "POST":
@@ -42,7 +42,8 @@ def add():
         newfood = Food(brand=brand, name=name, desc=desc, amount=amount,
                        amount_type=amount_type, total_servs=total_servs,
                        cal=cal, fat=fat, carb=carb, fiber=fib, prot=prot,
-                       sugar=sugar, sodium=sod, potassium=pot)
+                       sugar=sugar, sodium=sod, potassium=pot,
+                       user_id=current_user.id, active=False)
         db.session.add(newfood)
         db.session.commit()
 
@@ -72,14 +73,15 @@ def search():
 
         if name and not brand:
             rows = Food.query.filter(Food.name.like(name)).order_by(
-                Food.clicks).all()
+                Food.clicks).filter(Food.active is True).all()
         elif brand and not name:
             rows = Food.query.filter(Food.brand.like(brand)).order_by(
-                Food.clicks).all()
+                Food.clicks).filter(Food.active is True).all()
         elif name and brand:
             rows = Food.query.filter(
                 Food.name.like(name) and Food.brand.like(brand)
-                ).order_by(Food.clicks).all()
+                ).order_by(Food.clicks).filter(
+                    Food.active is True).all()
         else:
             rows = []
 
@@ -120,7 +122,7 @@ def calc():
 
 
 @bp.route("/edit", methods=["POST"])
-@roles_required('admin')
+@login_required
 def edit():
     """Edit a food."""
     post_type = str(request.form.get("post_type")).lower()
@@ -129,6 +131,10 @@ def edit():
 
     if post_type == "load":
         food = Food.query.filter(Food.id == food_id).first()
+
+        if food.user_id != current_user.id:
+            flash('You can only edit foods posted by you.')
+            return redirect(url_for('main.search'))
 
         # update the clicks the food has (usage popularity)
         if food.clicks is None:
@@ -161,6 +167,11 @@ def edit():
             brand = None
 
         food = Food.query.filter(Food.id == food_id).first()
+
+        if food.user_id != current_user.id:
+            flash('You can only edit foods posted by you.')
+            return redirect(url_for('main.search'))
+
         food.brand = brand
         food.name = name
         food.desc = desc

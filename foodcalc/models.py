@@ -15,14 +15,15 @@ class Role(db.Model, fsqla.FsRoleMixin):
 class User(db.Model, fsqla.FsUserMixin):
     """A user."""
 
+    foods = db.relationship('Food', backref='user', lazy=True)
+
 
 class Food(db.Model):
     """A food."""
 
-    __tablename__ = "foods"  # Compatibility with old code.
+    __tablename__ = "foods"
     id = db.Column(db.Integer, primary_key=True)
-    # Should probably be a string, but I am keeping it for compatibility.
-    brand = db.Column(db.String(120))  # Same applies to most of these text fields.
+    brand = db.Column(db.String(120))
     name = db.Column(db.String(120))
     desc = db.Column(db.String(120))
     total_servs = db.Column(db.String(120))
@@ -38,3 +39,5 @@ class Food(db.Model):
     potassium = db.Column(db.Float)
     clicks = db.Column(db.Float)
     date = db.Column(db.DateTime)
+    active = db.Column(db.Boolean)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))

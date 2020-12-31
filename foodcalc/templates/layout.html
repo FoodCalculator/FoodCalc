@@ -1,36 +1,81 @@
 <!DOCTYPE html>
 
 <html lang="en">
-    <head>
-        <title>FoodCalculator {% block title %}{% endblock %}</title>
-        <link href="{{ url_for('static', filename='bootstrap.css') }}" rel="stylesheet">
-        {% block head %}{% endblock %}
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-md navbar-light bg-light border">
-            <div class="container-fluid">
+
+<head>
+    <title>FoodCalculator {% block title %}{% endblock %}</title>
+    <link href="{{ url_for('static', filename='bootstrap.css') }}" rel="stylesheet">
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light border">
+        <div class="container-fluid">
+            <header role="banner">
                 <a class="navbar-brand" href="/">FoodCalc</a>
-                <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbar" data-toggle="collapse" type="button">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbar">
-                    <ul class="navbar-nav me-auto mt-2">
-                        <li class="nav-item"><a class="nav-link" href="/add">Add</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('security.login') }}">Log In</a>
-                        </li>
-                    </ul>
-                </div>
+            </header>
+            <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+                data-target="#navbar" data-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar" role="navigation">
+                <ul class="navbar-nav me-auto mt-2">
+                    <li class="nav-item"><a class="nav-link" href="/add">Add</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            User
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% if current_user.is_authenticated %}
+                            <li>
+                                <a href="{{ url_for('security.logout') }}" class="dropdown-item">
+                                    Log Out
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url_for('security.change_password') }}" class="dropdown-item">
+                                    Change Password
+                                </a>
+                            </li>
+                            <li><a href="/tf-setup" class="dropdown-item">
+                                    Set up two-factor-authentication (beta).
+                                </a></li>
+                            {% else %}
+                            <li><a class="dropdown-item" href="{{ url_for('security.login') }}">
+                                    Log In
+                                </a>
+                            </li>
+                            <li><a href="{{ url_for('security.register') }}" class="dropdown-item">
+                                    Register
+                                </a></li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                </ul>
             </div>
-        </nav>
-        <main class="container p-5">
-            {% block main %}
-            {% endblock %}
-        </main>
-        {% block scripts %}
-        <!-- Scripts go at the bottom so they don't block the render. -->
-        <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+        </div>
+    </nav>
+    <aside role="contentinfo">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class="flashes">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </aside>
+    <main class="container p-5" role="main">
+        {% block main %}
         {% endblock %}
-    </body>
+    </main>
+    {% block scripts %}
+    <!-- Scripts go at the bottom so they don't block the render. -->
+    <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+    {% endblock %}
+</body>
+
 </html>

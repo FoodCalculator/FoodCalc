@@ -1,7 +1,7 @@
 """The main blueprint."""
 
 from flask import Blueprint, render_template, request, redirect, abort, flash, url_for
-from flask_security import login_required, current_user
+from flask_security import AnonymousUser, login_required, current_user
 
 from foodcalc.models import db, Food
 
@@ -15,9 +15,14 @@ def index():
 
     # later order by advertised 
     # (since the user has not searched a food yet)
-    rows = Food.query.order_by(Food.clicks).filter(Food.user_id == current_user.id).limit(100).all()
+    if AnonymousUser.is_anonymous:
+        rows = Food.query.order_by(Food.clicks).limit(100).all()
+        message = "Top foods"
+    else:
+        message = "Your top foods"
+        rows = Food.query.order_by(Food.clicks).filter(Food.user_id == current_user.id).limit(100).all()
 
-    return render_template("foods.html", rows=rows, top_message="Your Foods")
+    return render_template("foods.html", rows=rows, top_message=message)
 
 
 @bp.route("/add", methods=["POST", "GET"])

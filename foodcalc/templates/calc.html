@@ -5,12 +5,12 @@
 {% endblock %}
 
 {% block main %}
+    <h4>{{ row["brand"] }}</h4>
+    <h2>{{ row["name"] }}</h2>
+    <p>{{ row["desc"] }}</p>
     <table class="table table-responsive table-bordered shadow-sm">
         <thead>
             <tr>
-                <th>Brand/Company</th>
-                <th>Label</th>
-                <th>Description</th>
                 <th>Amount</th>
                 <th>Cal</th>
                 <th>Fat</th>
@@ -25,9 +25,6 @@
         </thead>
         <tbody>
             <tr>
-                <td class="no">{{ row["brand"] }}</td>
-                <td>{{ row["name"] }}</td>
-                <td>{{ row["desc"] }}</td>
                 <td>{{ multiplier * row["amount"]}} {{ row["amount_type"] }}</td>
                 <td>{{ multiplier * row["cal"] }}</td>
                 <td>{{ multiplier * row["fat"] }}</td>
@@ -43,12 +40,10 @@
     </table>
     <div>
         <span>
-            <form action="/calc" method="post">
-                <span class="input-group mb-3 shadow-sm">
-                    <input class="form-control-sm" name="multiplier" type="number" value="{{ multiplier }}" min="0" step="any" autocomplete="off" placeholder="Multiplier" required>
-                    <input name="id" type="number" value="{{ row['id'] }}" hidden>
-                    <button class="btn btn-secondary btn-sm">Calculate</button>
-                </span>
+            <form action="/calc" method="post" class="float-start form-control-sm">
+                <input class="form-control-sm" name="multiplier" type="number" value="{{ multiplier }}" min="0" step="any" autocomplete="off" placeholder="Multiplier" required>
+                <input name="id" type="number" value="{{ row['id'] }}" hidden>
+                <button class="btn btn-secondary btn-sm">Calculate</button>
             </form>
         </span>
         <span>

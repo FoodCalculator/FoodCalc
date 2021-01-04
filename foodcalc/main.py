@@ -13,7 +13,7 @@ bp = Blueprint('main', __name__)
 def index():
     """Show the home page."""
 
-    # later order by advertised 
+    # later order by advertised
     # (since the user has not searched a food yet)
     if AnonymousUser.is_anonymous:
         rows = Food.query.order_by(Food.clicks).limit(100).all()

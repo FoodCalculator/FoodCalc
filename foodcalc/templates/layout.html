@@ -18,7 +18,7 @@
                 data-target="#navbar" data-toggle="collapse" type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbar" role="navigation">
+            <div class="collapse navbar-collapse" name="navbar" id="navbar" role="navigation">
                 <ul class="navbar-nav me-auto mt-2">
                     <li class="nav-item"><a class="nav-link" href="/add">Add</a></li>
                     <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
@@ -62,7 +62,7 @@
         {% if messages %}
         <ul class="flashes">
             {% for message in messages %}
-            <li>{{ message }}</li>
+            <li class="alert-secondary">{{ message }}</li>
             {% endfor %}
         </ul>
         {% endif %}

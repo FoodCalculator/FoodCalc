@@ -12,7 +12,12 @@ bp = Blueprint('main', __name__)
 @bp.route("/", methods=["GET"])
 def index():
     """Show the home page."""
-    return render_template("foods.html")
+
+    # later order by advertised 
+    # (since the user has not searched a food yet)
+    rows = Food.query.order_by(Food.clicks).filter(Food.user_id == current_user.id).limit(100).all()
+
+    return render_template("foods.html", rows=rows, top_message="Your Foods")
 
 
 @bp.route("/add", methods=["POST", "GET"])
@@ -91,14 +96,10 @@ def search():
         else:
             message = "Results"
 
-        return render_template("search.html", rows=rows, top_message=message)
+        return render_template("searched.html", rows=rows, top_message=message)
 
-    # later order by advertised
-    # (since the user has not searched a food yet)
-    rows = Food.query.order_by(Food.clicks).limit(100).all()
-
-    return render_template("search.html", rows=rows,
-                           top_message="Top Foods")
+    # TODO later have advertised foods shown before the user searches
+    return render_template("search.html")
 
 
 @bp.route("/calc", methods=["POST"])

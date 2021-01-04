@@ -1,6 +1,20 @@
 {% extends "layout.html" %}
 
+{% block title %}
+    - Search
+{% endblock %}
+
 {% block main %}
+    <!--The search bar-->
+    <form action="/search" method="post">
+        <div class="input-group mb-3 shadow-sm">
+            <input class="form-control text-truncate" name="brand" autocomplete="off" type="search" placeholder="Brand / Company">
+            <input class="form-control text-truncate" name="name" autocomplete="off" type="search" placeholder="Label">
+            <input class="form-control text-truncate" name="desc" autocomplete="off" type="search" placeholder="Description (NOT WORKING)">
+            <!--Add field to search through foods description (above pre implemented)-->
+            <button class="btn btn-primary">Search</button>
+        </div>
+    </form>
     <!--The header bar for the results-->
     <h1 class="popover-header shadow-sm">{{ top_message }}</h1>
     <form class="input-group mb-3 shadow-sm">
@@ -18,6 +32,7 @@
         <span class="form-control w-01">Pot</span>
     </form>
     <!--Place an ad for a food item here-->
+
     <!--The list of search results-->
     {% for row in rows %}
     <div>

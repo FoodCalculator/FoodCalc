@@ -60,11 +60,11 @@
     <aside role="contentinfo">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
-        <ul class="flashes">
+        <div class="flashes">
             {% for message in messages %}
-            <li class="alert-secondary">{{ message }}</li>
+            <div class="alert-danger" >{{ message }}</div>
             {% endfor %}
-        </ul>
+        </div>
         {% endif %}
         {% endwith %}
     </aside>

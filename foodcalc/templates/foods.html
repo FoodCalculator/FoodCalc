@@ -4,9 +4,9 @@
     <!--The header bar for the results-->
     <h1 class="popover-header shadow-sm">{{ top_message }}</h1>
     <form class="input-group mb-3 shadow-sm">
-        <span class="form-control text-nowrap w-10">Brand</span>
-        <span class="form-control text-nowrap w-10">Label</span>
-        <span class="form-control text-nowrap w-10">Description</span>
+        <span class="form-control text-nowrap text-truncate w-10">Brand</span>
+        <span class="form-control text-nowrap text-truncate w-10">Label</span>
+        <span class="form-control text-nowrap text-truncate w-10">Description</span>
         <span class="form-control text-nowrap w-5">Serv Size</span>
         <span class="form-control w-01">Cal</span>
         <span class="form-control w-01">Fat</span>
@@ -22,9 +22,9 @@
     {% for row in rows %}
     <div>
         <div class="input-group">
-            <span class="form-control text-nowrap w-10">{{ row["brand"] }}</span>
-            <span class="form-control text-nowrap w-10">{{ row["name"] }}</span>
-            <span class="form-control text-nowrap w-10">{{ row["desc"] }}</span>
+            <span class="form-control text-nowrap text-truncate w-10">{{ row["brand"] }}</span>
+            <span class="form-control text-nowrap text-truncate w-10">{{ row["name"] }}</span>
+            <span class="form-control text-nowrap text-truncate w-10">{{ row["desc"] }}</span>
             <span class="form-control text-nowrap w-5">{{ row["amount"] }} {{ row["amount_type"] }}</span>
             <span class="form-control w-01">{{ row["cal"] }}</span>
             <span class="form-control w-01">{{ row["fat"] }}</span>
@@ -40,7 +40,6 @@
         <div>
             <span>
                 <form action="/calc" method="post" class="float-start form-control-sm">
-                    <input class="form-control-sm" name="multiplier" type="number" min="0" step="any" autocomplete="off" placeholder="Multiplier" required>
                     <input name="id" type="number" value="{{ row['id'] }}" hidden>
                     <button class="btn btn-secondary btn-sm">Calculate</button>
                 </form>

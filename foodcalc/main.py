@@ -12,7 +12,6 @@ bp = Blueprint('main', __name__)
 @bp.route("/", methods=["GET"])
 def index():
     """Show the home page."""
-
     # later order by advertised
     # (since the user has not searched a food yet)
     if AnonymousUser.is_anonymous:
@@ -110,8 +109,9 @@ def search():
 @bp.route("/calc", methods=["POST"])
 def calc():
     """Calculate a food multiplier."""
+
     food_id = int(request.form.get("id"))
-    multiplier = float(request.form.get("multiplier"))
+    multiplier = 0
 
     # fetch the food to be calculated
     food = Food.query.filter(Food.id == food_id).first()
@@ -124,6 +124,22 @@ def calc():
 
     db.session.add(food)
     db.session.commit()
+
+    # check if the user is in calc.html or coming from searched.html
+    # (which will affect the input received)
+    post_type = str(request.form.get("post_type"))
+    if post_type == "calc":
+
+        # get the basic info from the user of what they are wanting
+        value_type = str(request.form.get("value_type"))
+        desired_value = float(request.form.get("desired_value"))
+
+        if value_type == "cal":
+            multiplier = desired_value / food.cal
+        else:
+            multiplier = 1
+    else:
+        multiplier = 1
 
     return render_template("calc.html", row=food, multiplier=multiplier)
 

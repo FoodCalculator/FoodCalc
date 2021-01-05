@@ -139,7 +139,7 @@ def calc():
         else:
             multiplier = 1
     else:
-        multiplier = 1
+        multiplier = str(request.form.get("multiplier"))
 
     return render_template("calc.html", row=food, multiplier=multiplier)
 

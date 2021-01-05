@@ -138,8 +138,8 @@ def calc():
             multiplier = desired_value / food.cal
         else:
             multiplier = 1
-    else:
-        multiplier = float(request.form.get("multiplier"))
+    else: #post_type == "load":
+        multiplier = 1
 
     return render_template("calc.html", row=food, multiplier=multiplier)
 

@@ -40,6 +40,7 @@
         <div>
             <span>
                 <form action="/calc" method="post" class="float-start form-control-sm">
+                    <input name="post_type" type="text" value="load" hidden>
                     <input name="id" type="number" value="{{ row['id'] }}" hidden>
                     <button class="btn btn-secondary btn-sm">Calculate</button>
                 </form>

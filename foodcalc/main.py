@@ -136,8 +136,28 @@ def calc():
 
         if value_type == "cal":
             multiplier = desired_value / food.cal
+        elif value_type == "fat":
+            multiplier = desired_value / food.fat
+        elif value_type == "carb":
+            multiplier = desired_value / food.carb
+        elif value_type == "fib":
+            multiplier = desired_value / food.fiber
+        elif value_type == "prot":
+            multiplier = desired_value / food.prot
+        elif value_type == "sug":
+            multiplier = desired_value / food.sugar
+        elif value_type == "sod":
+            multiplier = desired_value / food.sodium
+        elif value_type == "pot":
+            multiplier = desired_value / food.potassium
+        elif value_type == "chol":
+            multiplier = desired_value / food.cholesterol
         else:
             multiplier = 1
+
+    # check if the user just using the multiplier bottom left button
+    elif post_type == "calc":
+        multiplier = float(request.form.get("multiplier"))
     else: #post_type == "load":
         multiplier = 1
 

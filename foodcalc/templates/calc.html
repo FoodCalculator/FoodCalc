@@ -8,82 +8,170 @@
     <h4>{{ row["brand"] }}</h4>
     <h2>{{ row["name"] }}</h2>
     <p>{{ row["desc"] }} - Total Servings {{ row["total_servs"] }}</p>
-    <table class="table table-bordered shadow-sm">
+    <table class="table table-bordered shadow-sm row-cols-auto">
         <thead>
             <tr>
-                <th>
+                <th style="font-weight:400;">
                     Amount
                 </th>
                 <th class="dropdown">
-                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                         Cal
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <form action="/calc" method="post" class="dropdown-item">
                             <input name="post_type" value="desired" hidden>
                             <input name="id" type="number" value="{{ row['id'] }}" hidden>
-                            <input name="value_type" type="text" value="cal" hidden>
+                            <input name="value_type" value="cal" hidden>
                             <input name="desired_value" type="number" step="any" placeholder="Desired Cal" required>
                             <input class="btn btn-primary btn-sm" type="submit" value="Calculate">
                         </form>
                     </div>
                 </th>
-                <th>
-                    Fat
+                <th class="dropdown">
+                    <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Fat
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <form action="/calc" method="post" class="dropdown-item">
+                            <input name="post_type" value="desired" hidden>
+                            <input name="id" type="number" value="{{ row['id'] }}" hidden>
+                            <input name="value_type" value="fat" hidden>
+                            <input name="desired_value" type="number" step="any" placeholder="Desired Fat" required>
+                            <input class="btn btn-primary btn-sm" type="submit" value="Calculate">
+                        </form>
+                    </div>
+                </th>
+                <th class="dropdown">
+                    <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Carb
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <form action="/calc" method="post" class="dropdown-item">
+                            <input name="post_type" value="desired" hidden>
+                            <input name="id" type="number" value="{{ row['id'] }}" hidden>
+                            <input name="value_type" value="carb" hidden>
+                            <input name="desired_value" type="number" step="any" placeholder="Desired Carbs" required>
+                            <input class="btn btn-primary btn-sm" type="submit" value="Calculate">
+                        </form>
+                    </div>
                 </th>
                 <th>
-                    Carb
+                    <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Fib
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <form action="/calc" method="post" class="dropdown-item">
+                            <input name="post_type" value="desired" hidden>
+                            <input name="id" type="number" value="{{ row['id'] }}" hidden>
+                            <input name="value_type" value="fib" hidden>
+                            <input name="desired_value" type="number" step="any" placeholder="Desired Fiber" required>
+                            <input class="btn btn-primary btn-sm" type="submit" value="Calculate">
+                        </form>
+                    </div>
                 </th>
                 <th>
-                    Fib
+                    <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Prot
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <form action="/calc" method="post" class="dropdown-item">
+                            <input name="post_type" value="desired" hidden>
+                            <input name="id" type="number" value="{{ row['id'] }}" hidden>
+                            <input name="value_type" value="prot" hidden>
+                            <input name="desired_value" type="number" step="any" placeholder="Desired Protein" required>
+                            <input class="btn btn-primary btn-sm" type="submit" value="Calculate">
+                        </form>
+                    </div>
                 </th>
                 <th>
-                    Prot
+                    <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Sugar
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <form action="/calc" method="post" class="dropdown-item">
+                            <input name="post_type" value="desired" hidden>
+                            <input name="id" type="number" value="{{ row['id'] }}" hidden>
+                            <input name="value_type" value="sug" hidden>
+                            <input name="desired_value" type="number" step="any" placeholder="Desired Sugar" required>
+                            <input class="btn btn-primary btn-sm" type="submit" value="Calculate">
+                        </form>
+                    </div>
                 </th>
                 <th>
-                    Sugar
+                    <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Sodium
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <form action="/calc" method="post" class="dropdown-item">
+                            <input name="post_type" value="desired" hidden>
+                            <input name="id" type="number" value="{{ row['id'] }}" hidden>
+                            <input name="value_type" value="sod" hidden>
+                            <input name="desired_value" type="number" step="any" placeholder="Desired Sodium" required>
+                            <input class="btn btn-primary btn-sm" type="submit" value="Calculate">
+                        </form>
+                    </div>
                 </th>
                 <th>
-                    Sod
+                    <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Pota
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <form action="/calc" method="post" class="dropdown-item">
+                            <input name="post_type" value="desired" hidden>
+                            <input name="id" type="number" value="{{ row['id'] }}" hidden>
+                            <input name="value_type" value="pot" hidden>
+                            <input name="desired_value" type="number" step="any" placeholder="Desired Potassium" required>
+                            <input class="btn btn-primary btn-sm" type="submit" value="Calculate">
+                        </form>
+                    </div>
                 </th>
                 <th>
-                    Pot
-                </th>
-                <th>
-                    Chol
+                    <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Chol
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <form action="/calc" method="post" class="dropdown-item">
+                            <input name="post_type" value="desired" hidden>
+                            <input name="id" type="number" value="{{ row['id'] }}" hidden>
+                            <input name="value_type" value="chol" hidden>
+                            <input name="desired_value" type="number" step="any" placeholder="Desired Cholesterol" required>
+                            <input class="btn btn-primary btn-sm" type="submit" value="Calculate">
+                        </form>
+                    </div>
                 </th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="text-truncate">
+                <td class="col-1 text-truncate">
                     {{ multiplier * row["amount"]}} {{ row["amount_type"] }}
                 </td>
-                <td class="text-truncate">
+                <td class="col-1 text-truncate">
                     {{ multiplier * row["cal"] }}
                 </td>
-                <td class="text-truncate">
+                <td class="col-1 text-truncate">
                     {{ multiplier * row["fat"] }}
                 </td>
-                <td class="text-truncate">
+                <td class="col-1 text-truncate">
                     {{ multiplier * row["carb"] }}
                 </td>
-                <td class="text-truncate">
+                <td class="col-1 text-truncate">
                     {{ multiplier * row["fiber"] }}
                 </td>
-                <td class="text-truncate ">
+                <td class="col-1 text-truncate">
                     {{ multiplier * row["prot"] }}
                 </td>
-                <td class="text-truncate">
+                <td class="col-1 text-truncate">
                     {{ multiplier * row["sugar"] }}
                 </td>
-                <td class="text-truncate">
+                <td class="col-1 text-truncate">
                     {{ multiplier * row["sodium"] }}
                 </td>
-                <td class="text-truncate">
+                <td class="col-1 text-truncate">
                     {{ multiplier * row["potassium"] }}
                 </td>
-                <td class="text-truncate">
+                <td class="col-1 text-truncate">
                     {{ multiplier * row["cholesterol"] }}
                 </td>
             </tr>
@@ -92,6 +180,7 @@
     <div>
         <span>
             <form action="/calc" method="post" class="float-start form-control-sm">
+                <input name="post_type" type="text" value="calc" hidden>
                 <input class="form-control-sm" name="multiplier" type="number" value="{{ multiplier }}" min="0" step="any" autocomplete="off" placeholder="Multiplier" required>
                 <input name="id" type="number" value="{{ row['id'] }}" hidden>
                 <button class="btn btn-secondary btn-sm">Calculate</button>
@@ -99,7 +188,7 @@
         </span>
         <span>
             <form action="/edit" method="post" class="float-end mb-5 form-control-sm">
-                <input name="post_type" type="text" value="calc" hidden>
+                <input name="post_type" type="text" value="load" hidden>
                 <input name="id" type="number" value="{{ row['id'] }}" hidden>
                 <label for="editButton" class="small fw-normal">Not right?</label>
                 <button class="btn btn-secondary btn-sm" id="editButton">Edit</button>

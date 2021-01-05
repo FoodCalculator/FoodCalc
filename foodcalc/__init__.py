@@ -4,13 +4,16 @@ import os
 
 from flask import Flask
 from flask_security import Security, SQLAlchemyUserDatastore
+from flask_admin import Admin
 
 from foodcalc import main
-from foodcalc.models import db, User, Role
+from foodcalc.models import db, User, Role, Food
+from foodcalc.admin import SecureModelView
 
 
 security = Security()
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)
+admin = Admin()
 
 
 def create_app():
@@ -43,6 +46,11 @@ def create_app():
 
     db.init_app(app)
     security.init_app(app, user_datastore)
+    admin.init_app(app)
+
+    admin.add_view(SecureModelView(User, db.session))
+    admin.add_view(SecureModelView(Role, db.session))
+    admin.add_view(SecureModelView(Food, db.session))
 
     def init_db():
         db.create_all()

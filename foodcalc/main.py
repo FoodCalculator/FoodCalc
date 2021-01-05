@@ -1,7 +1,7 @@
 """The main blueprint."""
 
 from flask import Blueprint, render_template, request, redirect, abort, flash, url_for
-from flask_security import AnonymousUser, login_required, current_user
+from flask_security import login_required, current_user, user_authenticated
 
 from foodcalc.models import db, Food
 
@@ -14,12 +14,16 @@ def index():
     """Show the home page."""
     # later order by advertised
     # (since the user has not searched a food yet)
-    if AnonymousUser.is_anonymous:
-        rows = Food.query.order_by(Food.clicks).limit(100).all()
-        message = "Top foods"
-    else:
+    if current_user.is_authenticated:
         message = "Your top foods"
         rows = Food.query.order_by(Food.clicks).filter(Food.user_id == current_user.id).limit(100).all()
+        
+        # if the user hasn't added any foods
+        if len(rows) == 0:
+            message = "You don't seem to have any foods yet!"
+    else:
+        rows = Food.query.order_by(Food.clicks).limit(100).all()
+        message = "Top foods"
 
     return render_template("foods.html", rows=rows, top_message=message)
 

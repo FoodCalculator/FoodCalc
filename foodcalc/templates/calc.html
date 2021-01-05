@@ -12,7 +12,18 @@
         <thead>
             <tr>
                 <th style="font-weight:400;">
-                    Amount
+                    <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Serv Size
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <form action="/calc" method="post" class="dropdown-item">
+                            <input name="post_type" value="desired" hidden>
+                            <input name="id" type="number" value="{{ row['id'] }}" hidden>
+                            <input name="value_type" value="amount" hidden>
+                            <input name="desired_value" type="number" step="any" placeholder="Desired Amount" required>
+                            <input class="btn btn-primary btn-sm" type="submit" value="Calculate">
+                        </form>
+                    </div>
                 </th>
                 <th class="dropdown">
                     <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">

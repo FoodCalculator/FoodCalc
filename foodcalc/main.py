@@ -134,7 +134,9 @@ def calc():
         value_type = str(request.form.get("value_type"))
         desired_value = float(request.form.get("desired_value"))
 
-        if value_type == "cal":
+        if value_type == "amount":
+            multiplier = desired_value / food.amount
+        elif value_type == "cal":
             multiplier = desired_value / food.cal
         elif value_type == "fat":
             multiplier = desired_value / food.fat

@@ -3,7 +3,11 @@
 {% block title %}Log In{% endblock %}
 
 {% block main %}
-
+<div>
+    <a class="form-label small text-center" href="/register">
+        Don't have an account? Register
+    </a>
+</div>
 <form action="{{ url_for('security.login') }}" method="post">
     {{ login_user_form.hidden_tag() }}
     <div class="mb-3">
@@ -19,9 +23,6 @@
         {{ login_user_form.remember(class_="checkbox") }}</h2>
     </div>
     {{ login_user_form.submit(class_="btn btn-primary text-center") }}
-    <a>
-        
-    </a>
 </form>
 
 {% endblock %}

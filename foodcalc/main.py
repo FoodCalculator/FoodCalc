@@ -128,7 +128,7 @@ def calc():
     # check if the user is in calc.html or coming from searched.html
     # (which will affect the input received)
     post_type = str(request.form.get("post_type"))
-    if post_type == "calc":
+    if post_type == "desired":
 
         # get the basic info from the user of what they are wanting
         value_type = str(request.form.get("value_type"))
@@ -139,7 +139,7 @@ def calc():
         else:
             multiplier = 1
     else:
-        multiplier = str(request.form.get("multiplier"))
+        multiplier = float(request.form.get("multiplier"))
 
     return render_template("calc.html", row=food, multiplier=multiplier)
 

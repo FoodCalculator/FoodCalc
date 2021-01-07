@@ -18,10 +18,10 @@
             <input class="form-control" name="desc" type="text" value="{{ row['desc'] }}" autocomplete="off" placeholder="Description (eg. Pancake Mix)" required>
         </div>
         <div class="mb-3">
-            <input class="form-control"  name="amount" type="number" value="{{ row['amount'] }}" min="1" step="any" autocomplete="off" placeholder="Serving Amount (eg. 1)" required>
+            <input class="form-control"  name="amount" type="number" value="{{ row['amount'] }}" min="1" step="any" autocomplete="off" placeholder="Serving Size (eg. 1)" required>
         </div>
         <div class="mb-3">
-            <select class="form-select"  name="amount_type" type="text" value="{{ row['amount_type'] }}" autocomplete="off" placeholder="Amount Type (eg. tsp)" required>
+            <select class="form-select"  name="amount_type" type="text" value="{{ row['amount_type'] }}" autocomplete="off" placeholder="Serving Measurement (eg. tsp)" required>
                 <option value="g">g (gram)</option>
                 <option value="mg">mg (milagram)</option>
                 <option value="tsp">tsp (teaspoon)</option>
@@ -39,7 +39,7 @@
             <select>
         </div>
         <div class="mb-3">
-            <input class="form-control"  name="total_servs" type="number" value="{{ row['total_servs'] }}" min="1" step="any" autocomplete="off" placeholder="Servings Per Container / Package" required>
+            <input class="form-control"  name="total_servs" type="number" value="{{ row['total_servs'] }}" min="1" step="any" autocomplete="off" placeholder="Total Servings Per Container (About)" required>
         </div>
         <div class="mb-3">
             <input class="form-control"  name="cal" type="number" value="{{ row['cal'] }}" min="0" step="any" autocomplete="off" placeholder="Calories (g)" required>

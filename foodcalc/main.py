@@ -99,9 +99,9 @@ def add():
 
         return redirect("/")
 
-    food = Food.query(Food.brand.distinct()).all()
+    brands = Food.query.distinct(Food.brand)
 
-    return render_template("add.html", row=food)
+    return render_template("add.html", brands=brands)
 
 
 @bp.route("/search", methods=["POST", "GET"])

@@ -9,7 +9,9 @@
         <div class="mb-3">
             <input list="brands" class="form-control" name="brand" type="text" autocomplete="kahbefuhew" placeholder="Brand/Company Name">
             <datalist id="brands">
-                <option value=""></option>
+                {% for brand in brands %}
+                    <option value="{{ brand['brand'] }}"></option>
+                {% endfor %}
             </datalist>
         </div>
         <div class="mb-3">

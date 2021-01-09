@@ -7,8 +7,10 @@
 {% block main %}
     <form action="/add" method="post">
         <div class="mb-3">
-            <input class="form-control" name="brand" type="text" autocomplete="kahbefuhew" placeholder="Brand/Company Name">
-            <!--Todo load all brand names from database as select options-->
+            <input list="brands" class="form-control" name="brand" type="text" autocomplete="kahbefuhew" placeholder="Brand/Company Name">
+            <datalist id="brands">
+                <option value=""></option>
+            </datalist>
         </div>
         <div class="mb-3">
             <input class="form-control" name="name" type="text" autocomplete="avefo" placeholder="Food Label (eg. Joes Pancakes, not Pancake Mix)" required>

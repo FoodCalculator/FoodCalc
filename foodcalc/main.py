@@ -99,7 +99,9 @@ def add():
 
         return redirect("/")
 
-    return render_template("add.html")
+    food = Food.query(Food.brand.distinct()).all()
+
+    return render_template("add.html", row=food)
 
 
 @bp.route("/search", methods=["POST", "GET"])
@@ -173,29 +175,37 @@ def calc():
         # get the basic info from the user of what they are wanting
         value_type = str(request.form.get("value_type"))
         desired_value = float(request.form.get("desired_value"))
+        cur_value = 0.0
 
         if value_type == "amount":
-            multiplier = desired_value / food.amount
+            cur_value = food.amount
         elif value_type == "cal":
-            multiplier = desired_value / food.cal
+            cur_value = food.cal
         elif value_type == "fat":
-            multiplier = desired_value / food.fat
+            cur_value = food.fat
         elif value_type == "carb":
-            multiplier = desired_value / food.carb
+            cur_value = food.carb
         elif value_type == "fib":
-            multiplier = desired_value / food.fiber
+            cur_value = food.fiber
         elif value_type == "prot":
-            multiplier = desired_value / food.prot
+            cur_value = food.prot
         elif value_type == "sug":
-            multiplier = desired_value / food.sugar
+            cur_value = food.sugar
         elif value_type == "sod":
-            multiplier = desired_value / food.sodium
+            cur_value = food.sodium
         elif value_type == "pot":
-            multiplier = desired_value / food.potassium
+            cur_value = food.potassium
         elif value_type == "chol":
-            multiplier = desired_value / food.cholesterol
+            cur_value = food.cholesterol
         else:
             multiplier = 1
+
+        try:
+            multiplier = desired_value / cur_value
+        except ZeroDivisionError:
+            multiplier = desired_value
+            
+            flash(f"Silly! You can't get {desired_value} from 0!")
 
     # check if the user just using the multiplier bottom left button
     elif post_type == "calc":

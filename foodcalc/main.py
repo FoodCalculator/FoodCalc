@@ -61,7 +61,7 @@ def add():
         db.session.add(newfood)
         db.session.commit()
 
-        return redirect("/")
+        return redirect("")
 
     return render_template("add.html")
 

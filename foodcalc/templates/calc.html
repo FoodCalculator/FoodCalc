@@ -5,7 +5,9 @@
 {% endblock %}
 
 {% block main %}
-    <h4>{{ row["brand"] }}</h4>
+    {% if row["brand"] %}
+        <h4>{{ row["brand"] }}</h4>
+    {% endif %}
     <h2>{{ row["name"] }}</h2>
     <p>{{ row["desc"] }} - Total Servings {{ row["total_servs"] }}</p>
     <div>

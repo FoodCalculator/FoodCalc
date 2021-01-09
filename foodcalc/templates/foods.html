@@ -23,9 +23,11 @@
     align-items: stretch;
     width: 100%;">
         <div>
-            <div style="font-size: small;">
-                {{ row["brand"] }}
-            </div>
+            {% if row["brand"] != None %}
+                <div style="font-size: small;">
+                    {{ row["brand"] }}
+                </div>
+            {% endif %}
             <div style="font-size: x-large;">
                 {{ row["name"] }}
             </div>

@@ -33,22 +33,58 @@ def index():
 def add():
     """Add a food."""
     if request.method == "POST":
-
+    
         brand = str(request.form.get("brand")).title()
         name = str(request.form.get("name")).title()
         desc = str(request.form.get("desc")).title()
-        amount = float(request.form.get("amount"))
-        amount_type = str(request.form.get("amount_type")).lower()
-        total_servs = float(request.form.get("total_servs"))
-        cal = float(request.form.get("cal"))
-        fat = float(request.form.get("fat"))
-        carb = float(request.form.get("carb"))
-        fib = float(request.form.get("fib"))
-        prot = float(request.form.get("prot"))
-        sugar = float(request.form.get("sugar"))
-        chol = float(request.form.get("chol"))
-        sod = float(request.form.get("sod"))
-        pot = float(request.form.get("pot"))
+        if len(request.form.get("amount")):
+            amount = float(request.form.get("amount"))
+        else:
+            amount = 0
+        if len(request.form.get("amount_type")):
+            amount_type = str(request.form.get("amount_type")).lower()
+        else:
+            amount_type = 0
+        if len(request.form.get("total_servs")):
+            total_servs = float(request.form.get("total_servs"))
+        else:
+            total_servs = 0
+        if len(request.form.get("cal")):
+            cal = float(request.form.get("cal"))
+        else:
+            cal = 0
+        if len(request.form.get("fat")): 
+            fat = float(request.form.get("fat"))
+        else:
+            fat = 0
+        if len(request.form.get("carb")):
+            carb = float(request.form.get("carb"))
+        else:
+            carb = 0
+        if len(request.form.get("fib")):
+            fib = float(request.form.get("fib"))
+        else:
+            fib = 0
+        if len(request.form.get("prot")):
+            prot = float(request.form.get("prot"))
+        else:
+            prot = 0
+        if len(request.form.get("sugar")):
+            sugar = float(request.form.get("sugar"))
+        else:
+            sugar = 0
+        if len(request.form.get("chol")):
+            chol = float(request.form.get("chol"))
+        else:
+            chol = 0
+        if len(request.form.get("sod")):
+            sod = float(request.form.get("sod"))
+        else:
+            sod = 0
+        if len(request.form.get("pot")):
+            pot = float(request.form.get("pot"))
+        else:
+            pot = 0
 
         if brand == "":
             brand = None
@@ -200,18 +236,54 @@ def edit():
         brand = str(request.form.get("brand")).title()
         name = str(request.form.get("name")).title()
         desc = str(request.form.get("desc")).title()
-        amount = float(request.form.get("amount"))
-        amount_type = str(request.form.get("amount_type")).lower()
-        total_servs = float(request.form.get("total_servs"))
-        cal = float(request.form.get("cal"))
-        fat = float(request.form.get("fat"))
-        carb = float(request.form.get("carb"))
-        fib = float(request.form.get("fib"))
-        prot = float(request.form.get("prot"))
-        sugar = float(request.form.get("sugar"))
-        chol = float(request.form.get("chol"))
-        sod = float(request.form.get("sod"))
-        pot = float(request.form.get("pot"))
+        if len(request.form.get("amount")):
+            amount = float(request.form.get("amount"))
+        else:
+            amount = 0
+        if len(request.form.get("amount_type")):
+            amount_type = str(request.form.get("amount_type")).lower()
+        else:
+            amount_type = 0
+        if len(request.form.get("total_servs")):
+            total_servs = float(request.form.get("total_servs"))
+        else:
+            total_servs = 0
+        if len(request.form.get("cal")):
+            cal = float(request.form.get("cal"))
+        else:
+            cal = 0
+        if len(request.form.get("fat")): 
+            fat = float(request.form.get("fat"))
+        else:
+            fat = 0
+        if len(request.form.get("carb")):
+            carb = float(request.form.get("carb"))
+        else:
+            carb = 0
+        if len(request.form.get("fib")):
+            fib = float(request.form.get("fib"))
+        else:
+            fib = 0
+        if len(request.form.get("prot")):
+            prot = float(request.form.get("prot"))
+        else:
+            prot = 0
+        if len(request.form.get("sugar")):
+            sugar = float(request.form.get("sugar"))
+        else:
+            sugar = 0
+        if len(request.form.get("chol")):
+            chol = float(request.form.get("chol"))
+        else:
+            chol = 0
+        if len(request.form.get("sod")):
+            sod = float(request.form.get("sod"))
+        else:
+            sod = 0
+        if len(request.form.get("pot")):
+            pot = float(request.form.get("pot"))
+        else:
+            pot = 0
 
         if brand == "":
             brand = None
@@ -241,5 +313,5 @@ def edit():
         db.session.add(food)
         db.session.commit()
 
-        return redirect("/search")
+        return redirect("/")
     return abort(400)
